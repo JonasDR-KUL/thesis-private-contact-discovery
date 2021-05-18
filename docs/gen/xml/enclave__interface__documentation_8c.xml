@@ -1,0 +1,463 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="enclave__interface__documentation_8c" kind="file" language="C++">
+    <compoundname>enclave_interface_documentation.c</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1a3d19c87973f20a1681b1aba738157180" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_ocall_reply</definition>
+        <argsstring>(const sgxsd_msg_header_t *reply_header, const uint8_t *reply_data, size_t reply_data_size, sgxsd_msg_tag_t msg_tag)</argsstring>
+        <name>sgxsd_ocall_reply</name>
+        <param>
+          <type>const sgxsd_msg_header_t *</type>
+          <declname>reply_header</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>reply_data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>reply_data_size</declname>
+        </param>
+        <param>
+          <type>sgxsd_msg_tag_t</type>
+          <declname>msg_tag</declname>
+        </param>
+        <briefdescription>
+<para>The enclave uses this OCALL to pass the result of the contact discovery to the service. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function will be called after a server is stopped using the sgxsd_enclave_server_stop ECALL.<linebreak/>
+The enclave will pass the result of the contact discovery requests to the service. <linebreak/>
+The result consists of 1 byte for each contact that was in the request. This byte will be 1 in case the contact is a registered users, 0 in case the contact isn&apos;t registered. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reply_header</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains the IV and MAC used for decrypting the reply. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reply_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains a 0 byte for each contact in the request that is not registered and a 1 byte for each contact that is registered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reply_data_sise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the reply in bytes, 1 byte for earch contact in the request. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg_tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Indicates to which client this reply should be sent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="14" column="14" declfile="code/enclave_interface_documentation.c" declline="14" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1aa4ef5ed9761682ea9df8546b7ecc24a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_node_init</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_node_init_args_t *p_args)</argsstring>
+        <name>sgxsd_enclave_node_init</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>const sgxsd_node_init_args_t *</type>
+          <declname>p_args</declname>
+        </param>
+        <briefdescription>
+<para>This ECALL will initialize the enclave. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function must be called first, before all other ECALLS.<linebreak/>
+It can only be called once. Calling it more than once will result in an error.<linebreak/>
+It will perform the enclave setup.<linebreak/>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used to calculate the size of the memory region used for storing client contact discovery requests. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="23" column="14" declfile="code/enclave_interface_documentation.c" declline="23" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1aca495acd15cdbfc6120b10ea4b12b45d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_server_start</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_init_args_t *p_args, sgxsd_server_state_handle_t state_handle)</argsstring>
+        <name>sgxsd_enclave_server_start</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>const sgxsd_server_init_args_t *</type>
+          <declname>p_args</declname>
+        </param>
+        <param>
+          <type>sgxsd_server_state_handle_t</type>
+          <declname>state_handle</declname>
+        </param>
+        <briefdescription>
+<para>Used to start the server specified with state_handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function starts the server specified with the state_handle argument.<linebreak/>
+It can only be called once for each server.<linebreak/>
+Zeroes the region of memory corresponding to the server state, then initializes the server state.<linebreak/>
+Must be called once on a server before this server can be used to make calls. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used to calculate size of server state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state_handle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used as index to fetch the appropriate server state. Must be smaller than the max allowed amount of servers (256). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="35" column="14" declfile="code/enclave_interface_documentation.c" declline="35" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1ac358a627010b7be454fdaa472bc48eae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_server_call</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_handle_call_args_t *p_args, const sgxsd_msg_header_t *msg_header, const uint8_t *msg_data, size_t msg_size, sgxsd_msg_tag_t msg_tag, sgxsd_server_state_handle_t state_handle)</argsstring>
+        <name>sgxsd_enclave_server_call</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>const sgxsd_server_handle_call_args_t *</type>
+          <declname>p_args</declname>
+        </param>
+        <param>
+          <type>const sgxsd_msg_header_t *</type>
+          <declname>msg_header</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>msg_data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>msg_size</declname>
+        </param>
+        <param>
+          <type>sgxsd_msg_tag_t</type>
+          <declname>msg_tag</declname>
+        </param>
+        <param>
+          <type>sgxsd_server_state_handle_t</type>
+          <declname>state_handle</declname>
+        </param>
+        <briefdescription>
+<para>Used to make a server call. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function can be used to send an encrypted contact discovery request to the server.<linebreak/>
+The message is decrypted and is stored behind previous messages in a byte array.<linebreak/>
+Message meta-data is stored in the server state in a linked list. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains the amount of contacts in the request. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg_header</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains the IV and MAC used by the enclave for decrypting the request. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The encrypted message. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The encrypted message size. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg_tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used for indicating which client this request belongs to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state_handle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used as index to fetch the appropriate server state. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="49" column="14" declfile="code/enclave_interface_documentation.c" declline="49" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1ad9fc450c6ed7fa6adddc8820240107df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_get_next_report</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, sgx_target_info_t qe_target_info, sgx_report_t *p_report)</argsstring>
+        <name>sgxsd_enclave_get_next_report</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>sgx_target_info_t</type>
+          <declname>qe_target_info</declname>
+        </param>
+        <param>
+          <type>sgx_report_t *</type>
+          <declname>p_report</declname>
+        </param>
+        <briefdescription>
+<para>Used to get the enclave measurement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>qe_target_info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target info. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_report</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Will contain the measurement after the function is finished. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="56" column="14" declfile="code/enclave_interface_documentation.c" declline="56" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1ac12b7ed1466840e11661314ca7cb3af0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_set_current_quote</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval)</argsstring>
+        <name>sgxsd_enclave_set_current_quote</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the old keypair equal to the newly generated keypair during a sgxsd_enclave_get_next_report call. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="61" column="14" declfile="code/enclave_interface_documentation.c" declline="61" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1ad8be24c001bc1e50a91ef4ac46329ddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_negotiate_request</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_request_negotiation_request_t *p_request, sgxsd_request_negotiation_response_t *p_response)</argsstring>
+        <name>sgxsd_enclave_negotiate_request</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>const sgxsd_request_negotiation_request_t *</type>
+          <declname>p_request</declname>
+        </param>
+        <param>
+          <type>sgxsd_request_negotiation_response_t *</type>
+          <declname>p_response</declname>
+        </param>
+        <briefdescription>
+<para>Used to establish a shared secret using ECDH. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function needs to be called before making a server call. It will register a pending request and set all fields in the response parameter. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_request</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains the client public key. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_response</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Will contain the enclave&apos;s 2 public keys when this call is finished. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="70" column="14" declfile="code/enclave_interface_documentation.c" declline="70" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="enclave__interface__documentation_8c_1ae01af3b5ebf55d64942471b57088c220" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sgx_status_t</type>
+        <definition>sgx_status_t sgxsd_enclave_server_stop</definition>
+        <argsstring>(sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_terminate_args_t *p_args, sgxsd_server_state_handle_t state_handle)</argsstring>
+        <name>sgxsd_enclave_server_stop</name>
+        <param>
+          <type>sgx_enclave_id_t</type>
+          <declname>eid</declname>
+        </param>
+        <param>
+          <type>sgx_status_t *</type>
+          <declname>retval</declname>
+        </param>
+        <param>
+          <type>const sgxsd_server_terminate_args_t *</type>
+          <declname>p_args</declname>
+        </param>
+        <param>
+          <type>sgxsd_server_state_handle_t</type>
+          <declname>state_handle</declname>
+        </param>
+        <briefdescription>
+<para>This function will find the intersection between registered users and the discovery requests and stop the server. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function will find the intersection between registered users and the discovery requests.<linebreak/>
+After that, the server is terminated.<linebreak/>
+It will call the OCALL with the encrypted reply. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contains the list of registered users. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state_handle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used to indentify the server that needs to be stopped. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="code/enclave_interface_documentation.c" line="80" column="14" declfile="code/enclave_interface_documentation.c" declline="80" declcolumn="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"></codeline>
+<codeline lineno="14"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1a3d19c87973f20a1681b1aba738157180" kindref="member">sgxsd_ocall_reply</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_msg_header_t<sp/>*reply_header,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>*reply_data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>reply_data_size,<sp/>sgxsd_msg_tag_t<sp/>msg_tag);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"></codeline>
+<codeline lineno="23"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1aa4ef5ed9761682ea9df8546b7ecc24a2" kindref="member">sgxsd_enclave_node_init</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_node_init_args_t*<sp/>p_args);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"></codeline>
+<codeline lineno="35"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1aca495acd15cdbfc6120b10ea4b12b45d" kindref="member">sgxsd_enclave_server_start</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_server_init_args_t*<sp/>p_args,<sp/>sgxsd_server_state_handle_t<sp/>state_handle);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"></codeline>
+<codeline lineno="49"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1ac358a627010b7be454fdaa472bc48eae" kindref="member">sgxsd_enclave_server_call</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_server_handle_call_args_t*<sp/>p_args,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_msg_header_t*<sp/>msg_header,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t*<sp/>msg_data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>msg_size,<sp/>sgxsd_msg_tag_t<sp/>msg_tag,<sp/>sgxsd_server_state_handle_t<sp/>state_handle);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"></codeline>
+<codeline lineno="56"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1ad9fc450c6ed7fa6adddc8820240107df" kindref="member">sgxsd_enclave_get_next_report</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/>sgx_target_info_t<sp/>qe_target_info,<sp/>sgx_report_t*<sp/>p_report);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"></codeline>
+<codeline lineno="61"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1ac12b7ed1466840e11661314ca7cb3af0" kindref="member">sgxsd_enclave_set_current_quote</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"></codeline>
+<codeline lineno="70"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1ad8be24c001bc1e50a91ef4ac46329ddd" kindref="member">sgxsd_enclave_negotiate_request</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_request_negotiation_request_t*<sp/>p_request,<sp/>sgxsd_request_negotiation_response_t*<sp/>p_response);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"></codeline>
+<codeline lineno="80"><highlight class="normal">sgx_status_t<sp/><ref refid="enclave__interface__documentation_8c_1ae01af3b5ebf55d64942471b57088c220" kindref="member">sgxsd_enclave_server_stop</ref>(sgx_enclave_id_t<sp/>eid,<sp/>sgx_status_t*<sp/>retval,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sgxsd_server_terminate_args_t*<sp/>p_args,<sp/>sgxsd_server_state_handle_t<sp/>state_handle);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="code/enclave_interface_documentation.c"/>
+  </compounddef>
+</doxygen>

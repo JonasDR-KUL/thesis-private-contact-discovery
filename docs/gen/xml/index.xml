@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="enclave__interface__documentation_8c" kind="file"><name>enclave_interface_documentation.c</name>
+    <member refid="enclave__interface__documentation_8c_1a3d19c87973f20a1681b1aba738157180" kind="function"><name>sgxsd_ocall_reply</name></member>
+    <member refid="enclave__interface__documentation_8c_1aa4ef5ed9761682ea9df8546b7ecc24a2" kind="function"><name>sgxsd_enclave_node_init</name></member>
+    <member refid="enclave__interface__documentation_8c_1aca495acd15cdbfc6120b10ea4b12b45d" kind="function"><name>sgxsd_enclave_server_start</name></member>
+    <member refid="enclave__interface__documentation_8c_1ac358a627010b7be454fdaa472bc48eae" kind="function"><name>sgxsd_enclave_server_call</name></member>
+    <member refid="enclave__interface__documentation_8c_1ad9fc450c6ed7fa6adddc8820240107df" kind="function"><name>sgxsd_enclave_get_next_report</name></member>
+    <member refid="enclave__interface__documentation_8c_1ac12b7ed1466840e11661314ca7cb3af0" kind="function"><name>sgxsd_enclave_set_current_quote</name></member>
+    <member refid="enclave__interface__documentation_8c_1ad8be24c001bc1e50a91ef4ac46329ddd" kind="function"><name>sgxsd_enclave_negotiate_request</name></member>
+    <member refid="enclave__interface__documentation_8c_1ae01af3b5ebf55d64942471b57088c220" kind="function"><name>sgxsd_enclave_server_stop</name></member>
+  </compound>
+  <compound refid="dir_050edd66366d13764f98250ef6db77f6" kind="dir"><name>code</name>
+  </compound>
+</doxygenindex>

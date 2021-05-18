@@ -1,0 +1,11 @@
+Package: libsabd-enclave1
+Source: libsabd-enclave
+Version: 1.0
+Architecture: amd64
+Maintainer: Jeffrey Griffin <geogriffin@fastmail.com>
+Installed-Size: 118
+Section: libs
+Priority: optional
+Description: ContactDiscoveryService Enclave Library
+ A package to reproducibly build the enclave library for
+ ContactDiscoveryService.

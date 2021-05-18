@@ -1,0 +1,176 @@
+.TH "code/enclave_interface_documentation.c" 3 "Tue May 4 2021" "signal_enclave_interface" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/enclave_interface_documentation.c
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_ocall_reply\fP (const sgxsd_msg_header_t *reply_header, const uint8_t *reply_data, size_t reply_data_size, sgxsd_msg_tag_t msg_tag)"
+.br
+.RI "The enclave uses this OCALL to pass the result of the contact discovery to the service\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_node_init\fP (sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_node_init_args_t *p_args)"
+.br
+.RI "This ECALL will initialize the enclave\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_server_start\fP (sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_init_args_t *p_args, sgxsd_server_state_handle_t state_handle)"
+.br
+.RI "Used to start the server specified with state_handle\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_server_call\fP (sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_handle_call_args_t *p_args, const sgxsd_msg_header_t *msg_header, const uint8_t *msg_data, size_t msg_size, sgxsd_msg_tag_t msg_tag, sgxsd_server_state_handle_t state_handle)"
+.br
+.RI "Used to make a server call\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_get_next_report\fP (sgx_enclave_id_t eid, sgx_status_t *retval, sgx_target_info_t qe_target_info, sgx_report_t *p_report)"
+.br
+.RI "Used to get the enclave measurement\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_set_current_quote\fP (sgx_enclave_id_t eid, sgx_status_t *retval)"
+.br
+.RI "This function sets the old keypair equal to the newly generated keypair during a sgxsd_enclave_get_next_report call\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_negotiate_request\fP (sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_request_negotiation_request_t *p_request, sgxsd_request_negotiation_response_t *p_response)"
+.br
+.RI "Used to establish a shared secret using ECDH\&. "
+.ti -1c
+.RI "sgx_status_t \fBsgxsd_enclave_server_stop\fP (sgx_enclave_id_t eid, sgx_status_t *retval, const sgxsd_server_terminate_args_t *p_args, sgxsd_server_state_handle_t state_handle)"
+.br
+.RI "This function will find the intersection between registered users and the discovery requests and stop the server\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "sgx_status_t sgxsd_enclave_get_next_report (sgx_enclave_id_t eid, sgx_status_t * retval, sgx_target_info_t qe_target_info, sgx_report_t * p_report)"
+
+.PP
+Used to get the enclave measurement\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIqe_target_info\fP Target info\&. 
+.br
+\fIp_report\fP Will contain the measurement after the function is finished\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_negotiate_request (sgx_enclave_id_t eid, sgx_status_t * retval, const sgxsd_request_negotiation_request_t * p_request, sgxsd_request_negotiation_response_t * p_response)"
+
+.PP
+Used to establish a shared secret using ECDH\&. This function needs to be called before making a server call\&. It will register a pending request and set all fields in the response parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp_request\fP Contains the client public key\&. 
+.br
+\fIp_response\fP Will contain the enclave's 2 public keys when this call is finished\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_node_init (sgx_enclave_id_t eid, sgx_status_t * retval, const sgxsd_node_init_args_t * p_args)"
+
+.PP
+This ECALL will initialize the enclave\&. This function must be called first, before all other ECALLS\&.
+.br
+It can only be called once\&. Calling it more than once will result in an error\&.
+.br
+It will perform the enclave setup\&.
+.br
+\fBParameters\fP
+.RS 4
+\fIp_args\fP Used to calculate the size of the memory region used for storing client contact discovery requests\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_server_call (sgx_enclave_id_t eid, sgx_status_t * retval, const sgxsd_server_handle_call_args_t * p_args, const sgxsd_msg_header_t * msg_header, const uint8_t * msg_data, size_t msg_size, sgxsd_msg_tag_t msg_tag, sgxsd_server_state_handle_t state_handle)"
+
+.PP
+Used to make a server call\&. This function can be used to send an encrypted contact discovery request to the server\&.
+.br
+The message is decrypted and is stored behind previous messages in a byte array\&.
+.br
+Message meta-data is stored in the server state in a linked list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp_args\fP Contains the amount of contacts in the request\&. 
+.br
+\fImsg_header\fP Contains the IV and MAC used by the enclave for decrypting the request\&. 
+.br
+\fImsg_data\fP The encrypted message\&. 
+.br
+\fImsg_size\fP The encrypted message size\&. 
+.br
+\fImsg_tag\fP Used for indicating which client this request belongs to\&. 
+.br
+\fIstate_handle\fP Used as index to fetch the appropriate server state\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_server_start (sgx_enclave_id_t eid, sgx_status_t * retval, const sgxsd_server_init_args_t * p_args, sgxsd_server_state_handle_t state_handle)"
+
+.PP
+Used to start the server specified with state_handle\&. This function starts the server specified with the state_handle argument\&.
+.br
+It can only be called once for each server\&.
+.br
+Zeroes the region of memory corresponding to the server state, then initializes the server state\&.
+.br
+Must be called once on a server before this server can be used to make calls\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp_args\fP Used to calculate size of server state\&. 
+.br
+\fIstate_handle\fP Used as index to fetch the appropriate server state\&. Must be smaller than the max allowed amount of servers (256)\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_server_stop (sgx_enclave_id_t eid, sgx_status_t * retval, const sgxsd_server_terminate_args_t * p_args, sgxsd_server_state_handle_t state_handle)"
+
+.PP
+This function will find the intersection between registered users and the discovery requests and stop the server\&. This function will find the intersection between registered users and the discovery requests\&.
+.br
+After that, the server is terminated\&.
+.br
+It will call the OCALL with the encrypted reply\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp_args\fP Contains the list of registered users\&. 
+.br
+\fIstate_handle\fP Used to indentify the server that needs to be stopped\&. 
+.RE
+.PP
+
+.SS "sgx_status_t sgxsd_enclave_set_current_quote (sgx_enclave_id_t eid, sgx_status_t * retval)"
+
+.PP
+This function sets the old keypair equal to the newly generated keypair during a sgxsd_enclave_get_next_report call\&. 
+.SS "sgx_status_t sgxsd_ocall_reply (const sgxsd_msg_header_t * reply_header, const uint8_t * reply_data, size_t reply_data_size, sgxsd_msg_tag_t msg_tag)"
+
+.PP
+The enclave uses this OCALL to pass the result of the contact discovery to the service\&. This function will be called after a server is stopped using the sgxsd_enclave_server_stop ECALL\&.
+.br
+The enclave will pass the result of the contact discovery requests to the service\&. 
+.br
+The result consists of 1 byte for each contact that was in the request\&. This byte will be 1 in case the contact is a registered users, 0 in case the contact isn't registered\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreply_header\fP Contains the IV and MAC used for decrypting the reply\&. 
+.br
+\fIreply_data\fP Contains a 0 byte for each contact in the request that is not registered and a 1 byte for each contact that is registered\&. 
+.br
+\fIreply_data_sise\fP The size of the reply in bytes, 1 byte for earch contact in the request\&. 
+.br
+\fImsg_tag\fP Indicates to which client this reply should be sent\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for signal_enclave_interface from the source code\&.

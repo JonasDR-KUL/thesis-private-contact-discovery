@@ -1,0 +1,17 @@
+\indexentry{code/enclave\_interface\_documentation.c@{code/enclave\_interface\_documentation.c}}{b}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_get\_next\_report@{sgxsd\_enclave\_get\_next\_report}}{b}
+\indexentry{sgxsd\_enclave\_get\_next\_report@{sgxsd\_enclave\_get\_next\_report}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{b}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_negotiate\_request@{sgxsd\_enclave\_negotiate\_request}}{b}
+\indexentry{sgxsd\_enclave\_negotiate\_request@{sgxsd\_enclave\_negotiate\_request}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{b}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_node\_init@{sgxsd\_enclave\_node\_init}}{c}
+\indexentry{sgxsd\_enclave\_node\_init@{sgxsd\_enclave\_node\_init}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{c}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_server\_call@{sgxsd\_enclave\_server\_call}}{c}
+\indexentry{sgxsd\_enclave\_server\_call@{sgxsd\_enclave\_server\_call}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{c}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_server\_start@{sgxsd\_enclave\_server\_start}}{d}
+\indexentry{sgxsd\_enclave\_server\_start@{sgxsd\_enclave\_server\_start}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{d}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_server\_stop@{sgxsd\_enclave\_server\_stop}}{d}
+\indexentry{sgxsd\_enclave\_server\_stop@{sgxsd\_enclave\_server\_stop}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{d}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_enclave\_set\_current\_quote@{sgxsd\_enclave\_set\_current\_quote}}{e}
+\indexentry{sgxsd\_enclave\_set\_current\_quote@{sgxsd\_enclave\_set\_current\_quote}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{e}
+\indexentry{enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}!sgxsd\_ocall\_reply@{sgxsd\_ocall\_reply}}{e}
+\indexentry{sgxsd\_ocall\_reply@{sgxsd\_ocall\_reply}!enclave\_interface\_documentation.c@{enclave\_interface\_documentation.c}}{e}

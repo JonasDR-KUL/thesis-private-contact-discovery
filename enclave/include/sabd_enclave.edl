@@ -1,0 +1,4 @@
+enclave {
+    include "sabd.h"
+    from "include/sgxsd.edl" import *;
+};
